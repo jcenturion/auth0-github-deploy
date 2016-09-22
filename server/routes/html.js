@@ -38,6 +38,8 @@ export default () => {
   `;
 
   return (req, res) => {
+    
+
     const settings = {
       AUTH0_DOMAIN: config('AUTH0_DOMAIN'),
       BASE_URL: url.format({
@@ -45,7 +47,8 @@ export default () => {
         host: req.get('host'),
         pathname: url.parse(req.originalUrl || '').pathname.replace(req.path, '')
       }),
-      BASE_PATH: url.parse(req.originalUrl || '').pathname.replace(req.path, '') + (req.path === '/admins' ? '/admins' : '')
+      BASE_PATH: url.parse(req.originalUrl || '').pathname.replace(req.path, '') + (req.path === '/admins' ? '/admins' : ''),
+      AUTH0_MANAGE_URL: config('AUTH0_MANAGE_URL') || 'http://manage.auth0.com'
     };
 
     // Render from CDN.
